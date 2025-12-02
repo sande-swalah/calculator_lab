@@ -1,61 +1,70 @@
-//storing our answers in an array
-const history = [] 
+// storing operation records in an array (exposed on window for browser UI)
+const history= []
 
-function storingResult(a, b, operator, result){
-    const record ={}
-        record.num1 = a
-        record.num2 = b
-        record.operator= operator
-        record.result = result
-    
+function storingResult(a, b, operator, result) {
+    const record = {
+        num1: a,
+        num2: b,
+        operator: operator,
+        result: result,
+    }
     history.push(record)
+    return record
 }
 
-storingResult()
-
-//addition function
-function Addition(){
+// addition function
+function add(a, b) {
     const result = a + b
-    storingResult(a,b, "+",result)
-    return result   
+    storingResult(a, b, '+', result)
+    return result
 }
-Addition()
 
 
 
-//subtraction function
-function Subtraction(){
+
+// subtraction function
+function subtract(a, b) {
     const result = a - b
-    storingResult(a, b, "-" , result)
+    storingResult(a, b, '-', result)
     return result
 }
-Subtraction()
 
 
 
-//multiplication function 
-function Multiplication(){
+
+// multiplication function
+function multiply(a, b) {
     const result = a * b
-    storingResult(a, b, "*", result)
+    storingResult(a, b, '*', result)
     return result
 }
-Multiplication()
 
 
 
-//division function
-function Division(){
+
+// division function
+function divide(a, b) {
+    if (b === 0) {
+        storingResult(a, b, '/', null)
+        return 'Error: Division by zero'
+    }
     const result = a / b
-    storingResult (a, b, "*", result)
+    storingResult(a, b, '/', result)
     return result
 }
-Division()
 
-console.log(Addition())
-console.log(Subtraction())
-console.log(Division())
-console.log(Multiplication())
-console.log(storingResult())
+// Example usage — remove or replace these with UI bindings as needed
+console.log('5 + 3 =', add(5, 3))
+console.log('5 - 3 =', subtract(5, 3))
+console.log('5 * 3 =', multiply(5, 3))
+console.log('5 / 0 =', divide(5, 0))
+console.log('5 / 2 =', divide(5, 2))
+
+// show history
+console.log('history:', history)
+
+
+
 
 
 
